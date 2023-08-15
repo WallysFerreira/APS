@@ -107,18 +107,7 @@ public class Main {
 
         for (int i = 0; i < texto_original.length(); i++) {
             int char_original = texto_original.charAt(i);
-            char char_decriptado;
-
-
-            if (char_original - rotacao < 65) {
-                char_decriptado = (char) (char_original - rotacao + 26);
-            } else {
-                char_decriptado = (char) (char_original - rotacao);
-            }
-
-            if (char_original == ' ') {
-                char_decriptado = ' ';
-            }
+            char char_decriptado = (char) (char_original - rotacao);
 
             texto_encriptado = texto_encriptado + char_decriptado;
         }
