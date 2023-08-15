@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class Main {
     static String texto_original, texto_encriptado;
     static int rotacao = 0;
+    static boolean opcao;
     public static void main(String[] args) {
 
         JFrame mainFrame = new JFrame("Cifra de Cesar");
@@ -50,6 +51,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 texto_original = input.getText();
+                opcao = false;
                 rotacaoDialog.setVisible(true);
             }
         });
@@ -60,8 +62,21 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 rotacao = Integer.parseInt(rotacaoInput.getText());
                 rotacaoDialog.setVisible(false);
-                encriptar();
+                if (opcao) {
+                    decriptar();
+                } else {
+                    encriptar();
+                }
                 output.setText(texto_encriptado);
+            }
+        });
+
+        decriptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                texto_original = input.getText();
+                opcao = true;
+                rotacaoDialog.setVisible(true);
             }
         });
 
@@ -83,6 +98,29 @@ public class Main {
             char char_encriptado = (char) (char_original + rotacao);
 
             texto_encriptado = texto_encriptado + char_encriptado;
+        }
+    }
+
+    public static void decriptar() {
+        // texto_original é a mensagem encriptada e texto_encriptado é a mensagem decriptada
+        texto_encriptado = "";
+
+        for (int i = 0; i < texto_original.length(); i++) {
+            int char_original = texto_original.charAt(i);
+            char char_decriptado;
+
+
+            if (char_original - rotacao < 65) {
+                char_decriptado = (char) (char_original - rotacao + 26);
+            } else {
+                char_decriptado = (char) (char_original - rotacao);
+            }
+
+            if (char_original == ' ') {
+                char_decriptado = ' ';
+            }
+
+            texto_encriptado = texto_encriptado + char_decriptado;
         }
     }
 }
