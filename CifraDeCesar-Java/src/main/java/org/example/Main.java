@@ -3,9 +3,12 @@ package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     static String texto_original, texto_encriptado;
+    static List<String> tentativas = new ArrayList<String>();
     static int rotacao = 0;
     static boolean opcao;
     public static void main(String[] args) {
@@ -105,11 +108,29 @@ public class Main {
         // texto_original é a mensagem encriptada e texto_encriptado é a mensagem decriptada
         texto_encriptado = "";
 
-        for (int i = 0; i < texto_original.length(); i++) {
-            int char_original = texto_original.charAt(i);
-            char char_decriptado = (char) (char_original - rotacao);
+        if (rotacao > 0) {
+            for (int i = 0; i < texto_original.length(); i++) {
+                int char_original = texto_original.charAt(i);
+                char char_decriptado = (char) (char_original - rotacao);
 
-            texto_encriptado = texto_encriptado + char_decriptado;
+                texto_encriptado = texto_encriptado + char_decriptado;
+            }
+        } else {
+            for (int rotacao = 1; rotacao < 25; rotacao++) {
+                for (int i = 0; i < texto_original.length(); i++) {
+                    int char_original = texto_original.charAt(i);
+                    char char_decriptado = (char) (char_original - rotacao);
+
+                    texto_encriptado = texto_encriptado + char_decriptado;
+                }
+                texto_encriptado = texto_encriptado + ' ';
+                texto_encriptado = texto_encriptado + '|';
+                texto_encriptado = texto_encriptado + ' ';
+
+                if (rotacao % 3 == 0) {
+                    texto_encriptado = texto_encriptado + '\n';
+                }
+            }
         }
     }
 }
