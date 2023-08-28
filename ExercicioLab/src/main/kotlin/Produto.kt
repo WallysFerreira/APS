@@ -20,4 +20,13 @@ class Produto (
     fun getNome() : String {
         return nome
     }
+
+    fun setPreco(preco: Float) {
+        if (preco <= 0) throw IllegalArgumentException("Preço inválido")
+        this.preco = preco
+    }
+
+    fun getPreco() : Float {
+        return preco
+    }
 }

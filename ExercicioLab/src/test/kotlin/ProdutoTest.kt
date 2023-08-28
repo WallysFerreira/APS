@@ -46,5 +46,23 @@ class ProdutoTest {
     fun testGetNome() {
         assertEquals(nome, produtoTeste.getNome())
     }
+
+    @Test
+    fun testSetPrecoInvalido() {
+        assertThrows<IllegalArgumentException> { produtoTeste.setPreco(-300.0f)}
+    }
+
+    @Test
+    fun testSetPrecoValido() {
+        val precoNovo = 1500.0f
+        assertDoesNotThrow { produtoTeste.setPreco(precoNovo) }
+
+        assertEquals(precoNovo, produtoTeste.getPreco())
+    }
+
+    @Test
+    fun testGetPreco() {
+        assertEquals(preco, produtoTeste.getPreco())
+    }
 }
 
