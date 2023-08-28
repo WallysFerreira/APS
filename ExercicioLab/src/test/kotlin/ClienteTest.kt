@@ -76,4 +76,10 @@ class ClienteTest {
         assertEquals(cpf, clienteTeste.getCpf())
     }
 
+    @Test
+    fun testConstrutorInvalido() {
+        assertThrows<IllegalArgumentException> {
+            val clienteTeste2 = Cliente(-23, "", "")
+        }
+    }
 }

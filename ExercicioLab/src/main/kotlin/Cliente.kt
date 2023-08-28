@@ -3,6 +3,11 @@ class Cliente(
     private var nome: String,
     private var cpf: String,
 ) {
+    init {
+        setCodigo(codigo)
+        setNome(nome)
+        setCpf(cpf)
+    }
     fun setCodigo(codigo: Int) {
         if (codigo <= 0) throw IllegalArgumentException("Código inválido")
         this.codigo = codigo
