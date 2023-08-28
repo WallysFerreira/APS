@@ -20,4 +20,9 @@ class Cliente(
     fun getNome() : String {
         return nome
     }
+
+    fun getCpf() : String {
+        return cpf
+    }
+
 }

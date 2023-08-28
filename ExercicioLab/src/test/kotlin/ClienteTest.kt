@@ -4,7 +4,10 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
 class ClienteTest {
-    private val clienteTeste: Cliente = Cliente(23, "Teste Silva", "12345678900")
+    private val codigo: Int = 23
+    private val nome: String = "Teste Silva"
+    private val cpf: String = "12345678900"
+    private val clienteTeste: Cliente = Cliente(codigo, nome, cpf)
 
     @Test
     fun testSetCodigoNegativo() {
@@ -24,7 +27,7 @@ class ClienteTest {
 
     @Test
     fun testGetCodigo() {
-        assertEquals(23, clienteTeste.getCodigo())
+        assertEquals(codigo, clienteTeste.getCodigo())
     }
 
     @Test
@@ -45,7 +48,12 @@ class ClienteTest {
 
     @Test
     fun testGetNome() {
-        assertEquals("Teste Silva", clienteTeste.getNome())
+        assertEquals(nome, clienteTeste.getNome())
+    }
+
+    @Test
+    fun testGetCpf() {
+        assertEquals(cpf, clienteTeste.getCpf())
     }
 
 }
