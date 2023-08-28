@@ -21,6 +21,11 @@ class Cliente(
         return nome
     }
 
+    fun setCpf(cpf: String) {
+        if (cpf.isNullOrEmpty()) throw IllegalArgumentException("CPF inválido")
+        this.cpf = cpf
+    }
+
     fun getCpf() : String {
         return cpf
     }

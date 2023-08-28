@@ -18,11 +18,13 @@ class ClienteTest {
 
     @Test
     fun testSetCodigoValido() {
+        val novoCodigo = 33
+
         assertDoesNotThrow {
-            clienteTeste.setCodigo(33)
+            clienteTeste.setCodigo(novoCodigo)
         }
 
-        assertEquals(33, clienteTeste.getCodigo())
+        assertEquals(novoCodigo, clienteTeste.getCodigo())
     }
 
     @Test
@@ -39,16 +41,34 @@ class ClienteTest {
 
     @Test
     fun testSetNomeValido() {
+        val novoNome = "Teste Dois"
+
         assertDoesNotThrow {
-            clienteTeste.setNome("Teste Dois")
+            clienteTeste.setNome(novoNome)
         }
 
-        assertEquals("Teste Dois", clienteTeste.getNome())
+        assertEquals(novoNome, clienteTeste.getNome())
     }
 
     @Test
     fun testGetNome() {
         assertEquals(nome, clienteTeste.getNome())
+    }
+
+    @Test
+    fun testSetCpfInvalido() {
+        assertThrows<IllegalArgumentException> {
+            clienteTeste.setCpf("")
+        }
+    }
+
+    @Test
+    fun testeSetCpfValido() {
+        val novoCpf = "98765432100"
+
+        assertDoesNotThrow { clienteTeste.setCpf(novoCpf) }
+
+        assertEquals(novoCpf, clienteTeste.getCpf())
     }
 
     @Test
