@@ -28,6 +28,22 @@ class ClienteTest {
     }
 
     @Test
+    fun testSetNomeInvalido() {
+        assertThrows<IllegalArgumentException> {
+            clienteTeste.setNome("")
+        }
+    }
+
+    @Test
+    fun testSetNomeValido() {
+        assertDoesNotThrow {
+            clienteTeste.setNome("Teste Dois")
+        }
+
+        assertEquals("Teste Dois", clienteTeste.getNome())
+    }
+
+    @Test
     fun testGetNome() {
         assertEquals("Teste Silva", clienteTeste.getNome())
     }
