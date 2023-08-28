@@ -11,4 +11,13 @@ class Produto (
     fun getCodigo() : Int {
         return codigo
     }
+
+    fun setNome(nome: String) {
+        if (nome.isNullOrEmpty()) throw IllegalArgumentException("Nome inválido")
+        this.nome = nome
+    }
+
+    fun getNome() : String {
+        return nome
+    }
 }

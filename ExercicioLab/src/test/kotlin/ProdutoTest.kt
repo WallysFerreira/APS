@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.assertDoesNotThrow
 
 class ProdutoTest {
     val codigo = 2
@@ -26,6 +27,24 @@ class ProdutoTest {
     @Test
     fun testGetCodigo() {
         assertEquals(codigo, produtoTeste.getCodigo())
+    }
+
+    @Test
+    fun testSetNomeInvalido() {
+        assertThrows<IllegalArgumentException> { produtoTeste.setNome("") }
+    }
+    @Test
+    fun testSetNomeValido() {
+        val nomeNovo = "Teste"
+
+        assertDoesNotThrow { produtoTeste.setNome(nomeNovo) }
+
+        assertEquals(nomeNovo, produtoTeste.getNome())
+    }
+
+    @Test
+    fun testGetNome() {
+        assertEquals(nome, produtoTeste.getNome())
     }
 }
 
