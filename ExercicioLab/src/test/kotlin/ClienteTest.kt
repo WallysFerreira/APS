@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
@@ -17,6 +18,13 @@ class ClienteTest {
         assertDoesNotThrow {
             clienteTeste.setCodigo(33)
         }
+
+        assertEquals(33, clienteTeste.getCodigo())
+    }
+
+    @Test
+    fun testGetCodigo() {
+        assertEquals(23, clienteTeste.getCodigo())
     }
 
 }
