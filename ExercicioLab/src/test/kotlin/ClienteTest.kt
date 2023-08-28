@@ -27,4 +27,9 @@ class ClienteTest {
         assertEquals(23, clienteTeste.getCodigo())
     }
 
+    @Test
+    fun testGetNome() {
+        assertEquals("Teste Silva", clienteTeste.getNome())
+    }
+
 }

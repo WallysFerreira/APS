@@ -11,4 +11,8 @@ class Cliente(
     fun getCodigo() : Int {
         return codigo
     }
+
+    fun getNome() : String {
+        return nome
+    }
 }
