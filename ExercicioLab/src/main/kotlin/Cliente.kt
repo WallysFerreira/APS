@@ -4,6 +4,7 @@ class Cliente(
     private var cpf: String,
 ) {
     fun setCodigo(codigo: Int) {
+        if (codigo <= 0) throw IllegalArgumentException("Código inválido")
         this.codigo = codigo
     }
 }

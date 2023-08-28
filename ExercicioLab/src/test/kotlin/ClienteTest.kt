@@ -1,6 +1,5 @@
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
 class ClienteTest {
@@ -12,4 +11,12 @@ class ClienteTest {
             clienteTeste.setCodigo(-2)
         }
     }
+
+    @Test
+    fun testSetCodigoValido() {
+        assertDoesNotThrow {
+            clienteTeste.setCodigo(33)
+        }
+    }
+
 }
