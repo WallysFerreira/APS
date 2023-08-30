@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
                 2 -> consultarConta(s)
                 3 -> menuAlterarConta(s)
                 4 -> removerConta(s)
-                5 -> exibirContas()
+                5 -> exibirContas(s)
                 9 -> continuar = false
             }
         }
@@ -98,7 +98,7 @@ fun consultarConta(s: Statement) {
             )
         }
     } catch (e: Exception) {
-        println("Erro ao consultar conta")
+        println("Erro generico ao consultar conta")
         println(e)
     }
 }
@@ -145,6 +145,7 @@ fun alterarConta(codigo: Int, opcao: Int, s: Statement) {
             }
         }
     } catch (e: Exception) {
+        println("Erro ao alterar conta")
         println(e)
     }
 }
@@ -163,10 +164,25 @@ fun removerConta(s: Statement) {
         try {
             s.executeQuery("DELETE FROM Conta WHERE codigo = ${codigo}")
         } catch (e: Exception) {
+            println("Erro generico ao deletar conta")
             println(e)
         }
     }
 }
 
-fun exibirContas() {
+fun exibirContas(s: Statement) {
+    try {
+        var result: ResultSet = s.executeQuery("SELECT * FROM Conta")
+
+        while (result.next()) {
+            println(
+                "Codigo: ${result.getInt("codigo")} | " +
+                        "Nome: ${result.getString("nome")} | " +
+                        "Saldo: ${result.getFloat("saldo")}"
+            )
+        }
+    } catch (e: Exception) {
+        println("Erro generico ao consultar contas")
+        println(e)
+    }
 }
