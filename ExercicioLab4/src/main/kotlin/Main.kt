@@ -1,5 +1,9 @@
 import java.sql.Connection
+import java.sql.ResultSet
+import java.sql.SQLIntegrityConstraintViolationException
 import java.sql.Statement
+
+private var quantidade = 1
 
 fun main(args: Array<String>) {
     try {
@@ -9,7 +13,7 @@ fun main(args: Array<String>) {
 
         while (continuar) {
             when (menuPrincipal()) {
-                1 -> cadastrarConta()
+                1 -> cadastrarConta(s)
                 2 -> consultarConta()
                 3 -> alterarConta()
                 4 -> removerConta()
@@ -50,7 +54,29 @@ fun menuPrincipal() : Int {
     return opcao
 }
 
-fun cadastrarConta() {
+fun cadastrarConta(s: Statement) {
+    var nome: String
+    var deuErro = false
+
+    println("Digite seu nome: ")
+    nome = readLine().toString()
+
+    try {
+        var rs: ResultSet =
+            s.executeQuery("INSERT INTO Conta(nome, saldo, codigo) VALUES ('${nome}', 0, ${quantidade})")
+    } catch(e: SQLIntegrityConstraintViolationException) {
+        println("Já existe uma conta com o código ${quantidade}")
+        deuErro = true
+    } catch (e: Exception) {
+        println("Erro generico ao tentar cadastrar conta")
+        println(e)
+        deuErro = true
+    }
+
+    if (!deuErro) {
+        println("Usuario cadastrado com sucesso!")
+        quantidade++
+    }
 }
 
 fun consultarConta() {
