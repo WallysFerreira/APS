@@ -88,11 +88,13 @@ fun consultarConta(s: Statement) {
     try {
         var result: ResultSet = s.executeQuery("SELECT codigo, nome, saldo FROM Conta WHERE codigo = ${codigo}")
 
-        while (result.next()) {
+        if (!result.next()) {
+            println("Conta não encontrada")
+        } else {
             println(
                 "Codigo: ${result.getInt("codigo")} | " +
-                        "Nome: ${result.getString("nome")} | " +
-                        "Saldo: ${result.getFloat("saldo")}"
+                "Nome: ${result.getString("nome")} | " +
+                "Saldo: ${result.getFloat("saldo")}"
             )
         }
     } catch (e: Exception) {
