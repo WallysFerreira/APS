@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
             when (menuPrincipal()) {
                 1 -> cadastrarConta(s)
                 2 -> consultarConta(s)
-                3 -> alterarConta()
+                3 -> menuAlterarConta(s)
                 4 -> removerConta()
                 5 -> exibirContas()
                 9 -> continuar = false
@@ -101,7 +101,49 @@ fun consultarConta(s: Statement) {
     }
 }
 
-fun alterarConta() {
+fun menuAlterarConta(s: Statement) {
+    var opcao: Int
+    var codigo: Int
+
+    println("Digite o codigo da conta que deseja alterar:")
+    codigo = readLine()!!.toInt()
+
+    var check: ResultSet = s.executeQuery("SELECT * FROM Conta WHERE codigo = ${codigo}")
+
+    if (check.next()) {
+        do {
+            println("O que você quer alterar?")
+            println("1 - Alterar nome")
+            println("2 - Alterar saldo")
+
+            opcao = readLine()!!.toInt()
+
+            if (!listOf(1, 2).contains(opcao)) println("Opção inválida")
+        } while (!listOf(1, 2).contains(opcao))
+
+        alterarConta(codigo, opcao, s)
+    } else {
+        println("Nenhum usuário encontrado com o código ${codigo}")
+    }
+}
+fun alterarConta(codigo: Int, opcao: Int, s: Statement) {
+    try {
+        when (opcao) {
+            1 -> {
+                println("Digite o novo nome:")
+                val valor = readLine().toString()
+                s.executeQuery("UPDATE Conta SET nome = '${valor}' where codigo = ${codigo}")
+            }
+
+            2 -> {
+                println("Digite o novo saldo:")
+                val valor = readLine()!!.toFloat()
+                s.executeQuery("UPDATE Conta SET saldo = ${valor} where codigo = ${codigo}")
+            }
+        }
+    } catch (e: Exception) {
+        println(e)
+    }
 }
 
 fun removerConta() {
