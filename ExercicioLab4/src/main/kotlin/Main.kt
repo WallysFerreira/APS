@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
         while (continuar) {
             when (menuPrincipal()) {
                 1 -> cadastrarConta(s)
-                2 -> consultarConta()
+                2 -> consultarConta(s)
                 3 -> alterarConta()
                 4 -> removerConta()
                 5 -> exibirContas()
@@ -79,7 +79,26 @@ fun cadastrarConta(s: Statement) {
     }
 }
 
-fun consultarConta() {
+fun consultarConta(s: Statement) {
+    var codigo: Int
+    println("Digite o codigo da conta que quer consultar: ")
+
+    codigo = readLine()!!.toInt()
+
+    try {
+        var result: ResultSet = s.executeQuery("SELECT codigo, nome, saldo FROM Conta WHERE codigo = ${codigo}")
+
+        while (result.next()) {
+            println(
+                "Codigo: ${result.getInt("codigo")} | " +
+                        "Nome: ${result.getString("nome")} | " +
+                        "Saldo: ${result.getFloat("saldo")}"
+            )
+        }
+    } catch (e: Exception) {
+        println("Erro ao consultar conta")
+        println(e)
+    }
 }
 
 fun alterarConta() {
