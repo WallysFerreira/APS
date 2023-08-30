@@ -3,6 +3,12 @@ class Produto (
     private var nome: String,
     private var preco: Float,
 ) {
+    init {
+        setCodigo(codigo)
+        setNome(nome)
+        setPreco(preco)
+    }
+
     fun setCodigo(codigo : Int) {
         if (codigo <= 0) throw IllegalArgumentException("Código inválido")
         this.codigo = codigo
