@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
                 1 -> cadastrarConta(s)
                 2 -> consultarConta(s)
                 3 -> menuAlterarConta(s)
-                4 -> removerConta()
+                4 -> removerConta(s)
                 5 -> exibirContas()
                 9 -> continuar = false
             }
@@ -128,6 +128,7 @@ fun menuAlterarConta(s: Statement) {
         println("Nenhum usuário encontrado com o código ${codigo}")
     }
 }
+
 fun alterarConta(codigo: Int, opcao: Int, s: Statement) {
     try {
         when (opcao) {
@@ -148,7 +149,23 @@ fun alterarConta(codigo: Int, opcao: Int, s: Statement) {
     }
 }
 
-fun removerConta() {
+fun removerConta(s: Statement) {
+    var codigo: Int
+    var check: ResultSet
+
+    println("Digite o código da conta que deseja remover")
+    codigo = readLine()!!.toInt()
+
+    check = s.executeQuery("SELECT * FROM Conta WHERE codigo = ${codigo}")
+    if (!check.next()) {
+        println("Nenhuma conta encontrada")
+    } else {
+        try {
+            s.executeQuery("DELETE FROM Conta WHERE codigo = ${codigo}")
+        } catch (e: Exception) {
+            println(e)
+        }
+    }
 }
 
 fun exibirContas() {
