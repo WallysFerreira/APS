@@ -62,8 +62,7 @@ fun cadastrarConta(s: Statement) {
     nome = readLine().toString()
 
     try {
-        var rs: ResultSet =
-            s.executeQuery("INSERT INTO Conta(nome, saldo, codigo) VALUES ('${nome}', 0, ${quantidade})")
+        s.executeQuery("INSERT INTO Conta(nome, saldo, codigo) VALUES ('${nome}', 0, ${quantidade})")
     } catch(e: SQLIntegrityConstraintViolationException) {
         println("Já existe uma conta com o código ${quantidade}")
         deuErro = true
@@ -97,6 +96,8 @@ fun consultarConta(s: Statement) {
                 "Saldo: ${result.getFloat("saldo")}"
             )
         }
+
+        result.close()
     } catch (e: Exception) {
         println("Erro generico ao consultar conta")
         println(e)
@@ -127,6 +128,8 @@ fun menuAlterarConta(s: Statement) {
     } else {
         println("Nenhum usuário encontrado com o código ${codigo}")
     }
+
+    check.close()
 }
 
 fun alterarConta(codigo: Int, opcao: Int, s: Statement) {
@@ -168,6 +171,8 @@ fun removerConta(s: Statement) {
             println(e)
         }
     }
+
+    check.close()
 }
 
 fun exibirContas(s: Statement) {
@@ -181,6 +186,8 @@ fun exibirContas(s: Statement) {
                         "Saldo: ${result.getFloat("saldo")}"
             )
         }
+
+        result.close()
     } catch (e: Exception) {
         println("Erro generico ao consultar contas")
         println(e)
