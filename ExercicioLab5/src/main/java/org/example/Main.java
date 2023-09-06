@@ -23,6 +23,9 @@ public class Main {
             int contagemLinhas = 1;
             String comecoLinha = "db ";
 
+            System.out.println("Como quer a saida?\n1 - Decimal\n2 - Hexadecimal\n3 - Binario");
+            int opcao = scanner.nextInt();
+
             for (int i = 0; i < data.length; i += 8) {
 
                 for (int j = 0; j < comecoLinha.length(); j++) {
@@ -33,12 +36,30 @@ public class Main {
 
                 for (int c = 0; c < 8; c++) {
                     if (c + i < data.length) {
-                        int hex = data[c + i] & 0xFF;
+                        if (opcao == 1) {
+                            int dec = data[c + 1] + 1;
 
-                        if (c == 7) {
-                            meioLinha += String.format("%s ", Integer.toHexString(hex));
-                        } else {
-                            meioLinha += String.format("%s, ", Integer.toHexString(hex));
+                            if (c == 7) {
+                                meioLinha += String.format("%d ", dec);
+                            } else {
+                                meioLinha += String.format("%d, ", dec);
+                            }
+                        } else if (opcao == 2) {
+                            int hex = data[c + i] & 0xFF;
+
+                            if (c == 7) {
+                                meioLinha += String.format("%s ", Integer.toHexString(hex));
+                            } else {
+                                meioLinha += String.format("%s, ", Integer.toHexString(hex));
+                            }
+                        } else if (opcao == 3) {
+                            int bin = data[c + i];
+
+                            if (c == 7) {
+                                meioLinha += String.format("%s ", Integer.toBinaryString(bin));
+                            } else {
+                                meioLinha += String.format("%s, ", Integer.toBinaryString(bin));
+                            }
                         }
                     }
                 }
