@@ -35,7 +35,11 @@ public class Main {
                     if (c + i < data.length) {
                         int hex = data[c + i] & 0xFF;
 
-                        meioLinha += String.format("%s, ", Integer.toHexString(hex));
+                        if (c == 7) {
+                            meioLinha += String.format("%s ", Integer.toHexString(hex));
+                        } else {
+                            meioLinha += String.format("%s, ", Integer.toHexString(hex));
+                        }
                     }
                 }
 
