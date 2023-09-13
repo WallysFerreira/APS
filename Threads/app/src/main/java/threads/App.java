@@ -7,5 +7,7 @@ public class App {
     public static void main(String[] args) {
         new MinhaThread("1").start();
         new MinhaThread("2").start();
+
+        new MinhaThreadRunnable("Um").run();
     }
 }

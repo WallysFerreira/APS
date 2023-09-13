@@ -1,9 +1,9 @@
 package threads;
 
-public class MinhaThread extends Thread {
+public class MinhaThreadRunnable implements Runnable {
     private String nome;
 
-    public MinhaThread(String nome) {
+    public MinhaThreadRunnable(String nome) {
         this.nome = nome;
     }
 
