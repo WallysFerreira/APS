@@ -37,7 +37,7 @@ public class Main {
                 for (int c = 0; c < 8; c++) {
                     if (c + i < data.length) {
                         if (opcao == 1) {
-                            int dec = data[c + 1] + 1;
+                            int dec = data[c + i];
 
                             if (c == 7) {
                                 meioLinha += String.format("%d ", dec);
