@@ -29,6 +29,8 @@ function nova_partida() {
     }
 
     inicializa_variaveis();
+
+    solucao = verifica_se_ganhou();
 }
 
 function inicializa_variaveis() {
@@ -82,4 +84,20 @@ function preenche_tabuleiro() {
             }
         }
     }
+}
+
+function verifica_se_ganhou() {
+    cont = 0;
+
+    for (i = 0; i < tabuleiro.length; i++) {
+        for (j = 0; j < tabuleiro[i].length; j++) {
+            cont++;
+
+            if (tabuleiro[i][j] != cont) {
+                return 0;
+            }
+        }
+    }
+
+    return 1;
 }
