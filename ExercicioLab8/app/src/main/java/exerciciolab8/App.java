@@ -13,12 +13,12 @@ class RepositorioMYSQL implements Repositorio {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/banco_muita_grana";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
-    public void salvarConta(int codigo, String nome, double saldo) {
+    public void salvarConta(Conta conta) {
         try {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
             Statement stmt = conn.createStatement();
-            String query = "INSERT INTO CONTA (codigo, nome, saldo) VALUES(" + codigo + " , '" + nome + "' , " + saldo + ")";
+            String query = "INSERT INTO CONTA (codigo, nome, saldo) VALUES(" + conta.codigo + " , '" + conta.nome + "' , " + conta.saldo + ")";
             stmt.executeUpdate(query);
             stmt.close();
             System.out.println(" Conta cadastrada.");
@@ -39,10 +39,6 @@ class Conta {
         this.nome = nome;
         this.saldo = saldo;
         rep = new RepositorioMYSQL();
-    }
-
-    public void salvar() {
-        rep.salvarConta(codigo, nome, saldo);
     }
 
     public double calculaSaldoJurosCompostos(int meses, double taxa) {
