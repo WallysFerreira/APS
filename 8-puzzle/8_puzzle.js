@@ -31,6 +31,7 @@ function nova_partida() {
     inicializa_variaveis();
 
     solucao = verifica_se_ganhou(tabuleiro);
+    imprime_vitoria(solucao);
 }
 
 function inicializa_variaveis() {
@@ -100,4 +101,12 @@ function verifica_se_ganhou(tab) {
     }
 
     return 1;
+}
+
+function imprime_vitoria(ganhou) {
+    elemento_resultado = document.getElementById('resultado').getElementsByTagName('strong')[0];
+
+    if (ganhou) {
+        elemento_resultado.innerText = 'PARABÉNS';
+    }
 }
