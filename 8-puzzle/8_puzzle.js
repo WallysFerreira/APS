@@ -30,7 +30,7 @@ function nova_partida() {
 
     inicializa_variaveis();
 
-    solucao = verifica_se_ganhou();
+    solucao = verifica_se_ganhou(tabuleiro);
 }
 
 function inicializa_variaveis() {
@@ -86,14 +86,14 @@ function preenche_tabuleiro() {
     }
 }
 
-function verifica_se_ganhou() {
+function verifica_se_ganhou(tab) {
     cont = 0;
 
-    for (i = 0; i < tabuleiro.length; i++) {
-        for (j = 0; j < tabuleiro[i].length; j++) {
+    for (i = 0; i < tab.length; i++) {
+        for (j = 0; j < tab[i].length; j++) {
             cont++;
 
-            if (tabuleiro[i][j] != cont) {
+            if (tab[i][j] != cont) {
                 return 0;
             }
         }
