@@ -7,14 +7,10 @@ var x_branco = 0;
 var y_branco = 0;
 var dificuldade = 100;
 
-
-
 window.onload = function () {
     nova_partida();
     preenche_tabuleiro();
 }
-
-
 
 function nova_partida() {
     movimento = 0;
@@ -72,14 +68,13 @@ function preenche_tabuleiro() {
     for (i = 0; i < tabuleiro.length; i++) {
         for (j = 0; j < tabuleiro[i].length; j++) {
             cont = cont + 1;
+
             if (tabuleiro[i][j] != 9) {
                 celulaTabela = document.getElementById('celula_' + (cont));
                 matriz_cores[i][j] = cores[tabuleiro[i][j] - 1];
                 document.getElementById('celula_' + (cont)).style.background = "" + matriz_cores[i][j];
                 celulaTabela.innerHTML = "" + tabuleiro[i][j];
-            }
-
-            else {
+            } else {
                 celulaTabela = document.getElementById('celula_' + (cont));
                 celulaTabela.innerText = "";
                 matriz_cores[i][j] = cores[tabuleiro[i][j] - 1];
