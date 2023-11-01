@@ -10,6 +10,9 @@ var dificuldade = 100;
 window.onload = function () {
     nova_partida();
     preenche_tabuleiro();
+    //solucao = verifica_se_ganhou([[3, 2, 4], [1, 5, 6] [9, 8, 7]]);
+    solucao = verifica_se_ganhou(tabuleiro);
+    imprime_vitoria(solucao);
 }
 
 function nova_partida() {
@@ -29,9 +32,6 @@ function nova_partida() {
     }
 
     inicializa_variaveis();
-
-    solucao = verifica_se_ganhou(tabuleiro);
-    imprime_vitoria(solucao);
 }
 
 function inicializa_variaveis() {
