@@ -110,3 +110,21 @@ function imprime_vitoria(ganhou) {
         elemento_resultado.innerText = 'PARABÉNS';
     }
 }
+
+function checa_controles(tecla) {
+    elemento_jogadas = document.getElementById("jogadas_realizadas")
+    switch (tecla) {
+        case 37:
+            elemento_jogadas.innerText = "Seta esquerda"
+            break
+        case 38:
+            elemento_jogadas.innerText = "Seta cima"
+            break
+        case 39:
+            elemento_jogadas.innerText = "Seta direita"
+            break
+        case 40:
+            elemento_jogadas.innerText = "Seta baixo"
+            break
+    }
+}
